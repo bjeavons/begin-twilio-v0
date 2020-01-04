@@ -1,5 +1,5 @@
 @app
-local-bp3
+stars-k2q
 
 @static
 
