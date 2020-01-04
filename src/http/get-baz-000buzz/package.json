@@ -1,0 +1,7 @@
+{
+  "name": "begin-app-get-baz-000buzz",
+  "dependencies": {
+    "@architect/functions": "latest",
+    "@begin/data": "latest"
+  }
+}
