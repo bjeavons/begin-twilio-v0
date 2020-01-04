@@ -5,6 +5,7 @@ stars-k2q
 
 @http
 post /msg
+get /ping
 
 @tables
 data
