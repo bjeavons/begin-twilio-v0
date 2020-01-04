@@ -4,7 +4,7 @@ stars-k2q
 @static
 
 @http
-
+post /msg
 
 @tables
 data
