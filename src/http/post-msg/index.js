@@ -1,12 +1,17 @@
-// Enable secure sessions, express-style middleware, and more:
-// https://docs.begin.com/en/functions/http/
-//
-// let begin = require('@architect/functions')
+let arc = require('@architect/functions');
+let data = require('@begin/data');
+let twilio = require('twilio');
 
 exports.handler = async function http(req) {
-  console.log(req)
+  //let msg = arc.http.helpers.bodyParser(req);
+  let twiml = new twilio.TwimlResponse();
+  console.log('got', req);
+  twiml.message('hello robo');
   return {
-    status: 302,
-    location: '/'
+    statusCode: 200,
+    headers: {
+      'content-type': 'text/xml',
+    },
+    body: twiml.toString()
   }
 }
