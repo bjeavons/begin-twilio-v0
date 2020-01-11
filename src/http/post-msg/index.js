@@ -1,23 +1,20 @@
 let arc = require('@architect/functions');
-let msgStore = require('@architect/shared/msg');
-const MessagingResponse = require('twilio').twiml.MessagingResponse;
+let router = require('./router.js');
 
 exports.handler = async function http(req) {
   let payload = arc.http.helpers.bodyParser(req);
-  const twiml = new MessagingResponse();
   
-  console.log('got body:', payload.Body);
+  console.log('got body:', payload.Body, 'from:', payload.From);
   
-  await msgStore.set(payload.Body);
-  let msgs = await msgStore.get();
+  console.log('env',process.env.TWILIO_SENDER);
 
-  twiml.message('hello robo');
+  response = router(payload);
 
   return {
     statusCode: 200,
     headers: {
       'content-type': 'text/xml',
     },
-    body: twiml.toString()
+    body: response.toString()
   }
 }
