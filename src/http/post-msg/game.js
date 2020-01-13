@@ -50,7 +50,7 @@ async function game(payload) {
             if (process.env.NODE_ENV === 'production') {
                 try {
                     const relayedMessage = await twilio.sendMessage(message, receiver);
-                    console.log('sid', relayedMessage.sid);
+                    console.log('Relayed message SID', relayedMessage.sid);
                 } 
                 catch (e) {
                     console.log('ERROR:', e);
