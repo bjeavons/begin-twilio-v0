@@ -1,14 +1,26 @@
 let data = require('@begin/data');
 
 exports.handler = async function http(req) {
-  let msgs = await data.get({
-    table: 'msg'
+  let chats = await data.get({
+    table: 'chat'
   });
+  let participants = await data.get({
+    table: 'participant'
+  });
+  let pending = await data.get({
+    table: 'pending'
+  });
+
+  let body = {
+    pending: pending,
+    participants: participants,
+    chats: chats
+  };
 
   return {
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify(msgs)
+    body: JSON.stringify(body)
   }
 }

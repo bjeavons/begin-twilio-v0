@@ -1,4 +1,1 @@
-module.exports = [
-    'fisher',
-    'budhist'
-];
+module.exports = process.env.CHAT_TOKENS.split(' ');
