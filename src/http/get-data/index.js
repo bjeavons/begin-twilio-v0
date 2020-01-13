@@ -21,6 +21,6 @@ exports.handler = async function http(req) {
     headers: {
       'content-type': 'application/json',
     },
-    body: process.env.NODE_ENV === 'product' ? '' : JSON.stringify(body)
+    body: process.env.NODE_ENV === 'production' ? '' : JSON.stringify(body)
   }
 }
