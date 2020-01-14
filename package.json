@@ -1,8 +1,9 @@
 {
   "name": "begin-app",
-  "version": "0.1.1",
+  "version": "0.0.0",
   "description": "A simple Begin app with the minimum necessary file structure",
   "scripts": {
+    "localdev": "TWILIO_ACCOUNT_SID=ACa7bca84e0a676e297f621d47c51ff077 TWILIO_AUTH_TOKEN=8951c743789960d516babfe3000952fd TWILIO_SENDER=+19166195628 CHAT_TOKENS=\"fisher budhist\" URL=\"http://localhost:3333\" npx sandbox",
     "start": "npx sandbox"
   },
   "devDependencies": {
