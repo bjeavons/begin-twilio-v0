@@ -1,18 +1,9 @@
-let twilio = require('twilio');
 let arc = require('@architect/functions');
+let twilio = require('@architect/shared/twilio');
 let game = require('./game.js');
 
 exports.handler = async function http(req) {
-  console.log(req);
-  let body = arc.http.helpers.bodyParser(req);
-  const requestIsValid = twilio.validateRequest(
-    process.env.TWILIO_AUTH_TOKEN,
-    req.headers['x-twilio-signature'],
-    process.env.TWILIO_URL,
-    body
-  );
-  console.log(body, req);
-  if ((process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'staging') && !requestIsValid) {
+  if ((process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'staging') && !twilio.validateRequest(req)) {
     return {
       statusCode: 401,
       body: 'Unauthorized'

@@ -1,4 +1,14 @@
 const twilio = require('twilio');
+let arc = require('@architect/functions');
+
+function validateRequest(req) {
+    return twilio.validateRequest(
+        process.env.TWILIO_AUTH_TOKEN,
+        req.headers['x-twilio-signature'],
+        process.env.TWILIO_URL,
+        arc.http.helpers.bodyParser(req)
+    );
+}
 
 function parseMessage(data) {
     return {
@@ -22,6 +32,7 @@ async function sendMessage(message, to) {
 }
 
 module.exports = {
+    validateRequest: validateRequest,
     parseMessage: parseMessage,
     twiml: twiml,
     sendMessage: sendMessage
