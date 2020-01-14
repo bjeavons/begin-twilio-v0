@@ -2,6 +2,10 @@ const twilio = require('twilio');
 let arc = require('@architect/functions');
 
 function validateRequest(req) {
+    if (process.env.NODE_ENV != 'production' && parseInt(process.env.LOG_LEVEL) === 7) {
+        console.log('twilio.validateRequest', 'provided signature:', req.headers['x-twilio-signature']);
+        console.log('twilio.validateRequest', 'params:', arc.http.helpers.bodyParser(req));
+    }
     return twilio.validateRequest(
         process.env.TWILIO_AUTH_TOKEN,
         req.headers['x-twilio-signature'],
