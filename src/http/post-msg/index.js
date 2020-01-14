@@ -3,6 +3,7 @@ let arc = require('@architect/functions');
 let game = require('./game.js');
 
 exports.handler = async function http(req) {
+  console.log(req);
   let body = arc.http.helpers.bodyParser(req);
   const requestIsValid = twilio.validateRequest(
     process.env.TWILIO_AUTH_TOKEN,
@@ -10,6 +11,7 @@ exports.handler = async function http(req) {
     process.env.URL,
     body
   );
+  console.log(body, req);
   if ((process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'staging') && !requestIsValid) {
     return {
       statusCode: 401,
