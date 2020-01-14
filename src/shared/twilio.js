@@ -7,11 +7,11 @@ function validateRequest(req) {
         console.log('twilio.validateRequest', 'req:', req);
         console.log('twilio.validateRequest', 'parsed:', arc.http.helpers.bodyParser(req));
     }
-    return twilio.validateRequestWithBody(
+    return twilio.validateRequest(
         process.env.TWILIO_AUTH_TOKEN,
         req.headers['X-Twilio-Signature'],
         process.env.TWILIO_URL,
-        req.body
+        arc.http.helpers.bodyParser(req)
     );
 }
 
