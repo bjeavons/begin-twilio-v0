@@ -3,11 +3,12 @@ let arc = require('@architect/functions');
 let game = require('./game.js');
 
 exports.handler = async function http(req) {
+  let body = arc.http.helpers.bodyParser(req);
   const requestIsValid = twilio.validateRequest(
     process.env.TWILIO_AUTH_TOKEN,
     req.headers['x-twilio-signature'],
     process.env.URL,
-    req.body
+    body
   );
   if ((process.env.NODE_ENV == 'production' || process.env.NODE_ENV == 'staging') && !requestIsValid) {
     return {
