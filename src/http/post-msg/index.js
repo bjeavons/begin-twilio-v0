@@ -8,7 +8,7 @@ exports.handler = async function http(req) {
   const requestIsValid = twilio.validateRequest(
     process.env.TWILIO_AUTH_TOKEN,
     req.headers['x-twilio-signature'],
-    process.env.URL,
+    process.env.URL + "msg",
     body
   );
   console.log(body, req);
